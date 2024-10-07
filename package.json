@@ -10,9 +10,11 @@
     "lint:fix": "eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0 --fix",
     "format": "prettier --write --cache .",
     "lint:format": "prettier --write . && eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0 --fix",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "db": "json-server data/db.json -p 8000"
   },
   "dependencies": {
+    "json-server": "^0.17.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1"
   },
