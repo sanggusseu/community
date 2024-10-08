@@ -5,10 +5,12 @@ import Dropdown from './header/Dropdown';
 import AvatarButton from './AvatarButton';
 import { Link } from 'react-router-dom';
 import Button from './Button';
+import AuthModal from './header/AuthModal';
 
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
+  const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -20,6 +22,10 @@ export default function Header() {
 
   const closeSidebar = () => {
     setIsSidebarOpen(false);
+  };
+
+  const toggleAuthModal = val => {
+    setIsAuthModalOpen(val);
   };
 
   return (
@@ -56,7 +62,12 @@ export default function Header() {
               </li>
             </ul>
           </nav>
-          <Button>로그인/회원가입</Button>
+          <Button handleOnClick={() => toggleAuthModal(true)}>
+            로그인/회원가입
+          </Button>
+          {isAuthModalOpen && (
+            <AuthModal closeModal={() => toggleAuthModal(false)} />
+          )}
           {/* <div className="flex items-center">
             <AvatarButton handleOnClick={toggleDropdown} />
             {isDropdownOpen && <Dropdown />}
