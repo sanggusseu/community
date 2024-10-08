@@ -5,6 +5,7 @@ import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MyWish from './pages/MyWish.jsx';
 import OtherWishes from './pages/OtherWishes.jsx';
+import MyPage from './pages/MyPage.jsx';
 
 const isLoggedIn = false;
 const getMainElement = isLoggedIn =>
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: 'my',
         element: <MyWish />,
+      },
+      {
+        path: 'mypage',
+        element: <MyPage />,
       },
     ],
   },
