@@ -6,6 +6,7 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 import MyWish from './pages/MyWish.jsx';
 import OtherWishes from './pages/OtherWishes.jsx';
 import MyPage from './pages/MyPage.jsx';
+import { AuthProvider } from './context/AuthContext.jsx';
 
 const isLoggedIn = false;
 const getMainElement = isLoggedIn =>
@@ -38,6 +39,8 @@ const router = createBrowserRouter([
 
 createRoot(document.getElementById('root')).render(
   <StrictMode>
+    <AuthProvider>
     <RouterProvider router={router} />
+    </AuthProvider>
   </StrictMode>,
 );

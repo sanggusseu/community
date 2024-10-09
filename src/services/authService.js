@@ -1,5 +1,4 @@
-import { apiClient, handleApiError, setToken } from '../utils/api';
-import { getUserInfo } from './auth';
+import { apiClient, handleApiError } from '../utils/api';
 
 const errorMap = new Map([
   ['Email already exists', '이미 가입된 이메일입니다.'],
@@ -10,9 +9,7 @@ const errorMap = new Map([
 export const registerUser = async data => {
   try {
     const response = await apiClient.post('/users', data);
-    console.log('회원가입 및 로그인 성공');
-    setToken(response.data.accessToken);
-    console.log(getUserInfo());
+    return response.data.accessToken;
   } catch (err) {
     handleApiError(err, errorMap);
   }
@@ -21,9 +18,7 @@ export const registerUser = async data => {
 export const loginUser = async data => {
   try {
     const response = await apiClient.post('/login', data);
-    console.log('로그인 성공');
-    setToken(response.data.accessToken);
-    console.log(getUserInfo());
+    return response.data.accessToken;
   } catch (err) {
     handleApiError(err, errorMap);
   }

@@ -1,8 +1,8 @@
-import { useRef, useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaTimes, FaEnvelope, FaLock } from 'react-icons/fa';
 import Dimmed from '../Dimmed';
 import Button from '../Button';
-import { loginUser, registerUser } from '../../services/authService';
+import { AuthContext } from '../../context/AuthContext';
 
 export default function AuthModal({ closeModal }) {
   const SIGNIN = '로그인';
@@ -10,6 +10,7 @@ export default function AuthModal({ closeModal }) {
   const initialFormData = { email: '', password: '' };
   const [form, setForm] = useState(initialFormData);
   const [isSignIn, setIsSignIn] = useState(true);
+  const {handleLogin, handleRegister, user} = useContext(AuthContext);
 
   const handleFormData = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -20,11 +21,14 @@ export default function AuthModal({ closeModal }) {
   const handleOnSubmit = e => {
     e.preventDefault();
     if (isSignIn) {
-      loginUser({ ...form });
+      handleLogin({...form});
     } else {
-      registerUser({ ...form });
+      handleRegister({...form});
     }
   };
+
+  if (user) return;
+
   return (
     <>
       <div className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-dark bg-opacity-50 flex items-center justify-center z-50 rounded-lg">
