@@ -15,11 +15,11 @@ export const handleApiError = (error, errorMap) => {
   console.error(errorMessage);
 };
 
-export const setToken = token => {
+export const setLocalToken = token => {
   localStorage.setItem(TOKEN_STORAGE_KEY, token);
 };
 
-export const getToken = () => {
+export const getLocalToken = () => {
   return localStorage.getItem(TOKEN_STORAGE_KEY);
 };
 
