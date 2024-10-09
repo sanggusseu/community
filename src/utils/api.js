@@ -28,5 +28,5 @@ export const isLoggedIn = () => {
 };
 
 export const logoutUser = () => {
-  setToken('');
+  localStorage.removeItem(TOKEN_STORAGE_KEY);
 };
