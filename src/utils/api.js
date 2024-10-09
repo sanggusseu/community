@@ -1,10 +1,9 @@
 import axios from 'axios';
-
-const BASEURL = 'http://localhost:8000/';
-const TOKEN_KEY = 'token';
+import { TOKEN_STORAGE_KEY } from '../constants/storage';
+import { BASE_API_URL } from '../constants/api';
 
 export const apiClient = axios.create({
-  baseURL: BASEURL,
+  baseURL: BASE_API_URL,
   headers: {
     'Content-Type': 'application/json',
   },
@@ -17,11 +16,11 @@ export const handleApiError = (error, errorMap) => {
 };
 
 export const setToken = token => {
-  localStorage.setItem(TOKEN_KEY, token);
+  localStorage.setItem(TOKEN_STORAGE_KEY, token);
 };
 
 export const getToken = () => {
-  return localStorage.getItem(TOKEN_KEY);
+  return localStorage.getItem(TOKEN_STORAGE_KEY);
 };
 
 export const isLoggedIn = () => {
