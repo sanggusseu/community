@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import Sidebar from './header/Sidebar';
 import Dropdown from './header/Dropdown';
@@ -6,11 +6,13 @@ import AvatarButton from './AvatarButton';
 import { Link } from 'react-router-dom';
 import Button from './Button';
 import AuthModal from './header/AuthModal';
+import { AuthContext } from '../context/AuthContext';
 
 export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
+  const {user} = useContext(AuthContext);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -62,16 +64,20 @@ export default function Header() {
               </li>
             </ul>
           </nav>
-          <Button handleOnClick={() => toggleAuthModal(true)}>
+          {
+            !user && (<Button handleOnClick={() => toggleAuthModal(true)}>
             로그인/회원가입
-          </Button>
+          </Button>)
+          }
           {isAuthModalOpen && (
             <AuthModal closeModal={() => toggleAuthModal(false)} />
           )}
-          {/* <div className="flex items-center">
-            <AvatarButton handleOnClick={toggleDropdown} />
-            {isDropdownOpen && <Dropdown />}
-          </div> */}
+          {
+            user && (<div className="flex items-center">
+              <AvatarButton handleOnClick={toggleDropdown} />
+              {isDropdownOpen && <Dropdown />}
+            </div>)
+          }
         </div>
       </div>
       <Sidebar isOpen={isSidebarOpen} closeSidebar={closeSidebar} />
