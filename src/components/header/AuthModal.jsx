@@ -28,7 +28,10 @@ export default function AuthModal({ closeModal }) {
     setForm(initialFormData);
   };
 
-  if (user) return;
+  if (user) {
+    closeModal();
+    return;
+  }
 
   return (
     <>
