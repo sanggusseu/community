@@ -54,6 +54,7 @@ export default function AuthModal({ closeModal }) {
                   type="email"
                   id="email"
                   name="email"
+                  autoComplete="off"
                   value={form.email}
                   onChange={handleFormData}
                   className="w-full pl-10 pr-3 py-2 rounded-lg dark:bg-light dark:text-dark bg-dark text-light focus:outline-none focus:ring-2 focus:ring-light-500"
