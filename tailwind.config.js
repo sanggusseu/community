@@ -1,10 +1,12 @@
 /** @type {import('tailwindcss').Config} */
 export default {
   theme: {
-    colors: {
-      'light': '#ffffff',
-      'dark': '#111827',
-      'primary': '#0066ff',
+    extend: {
+      colors: {
+        'light': '#ffffff',
+        'dark': '#111827',
+        'primary': '#0066ff',
+      },
     },
   },
   darkMode: 'selector',
