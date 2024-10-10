@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
 export default function Dropdown() {
-  const {handleLogout} = useContext(AuthContext);
+  const { handleLogout } = useContext(AuthContext);
 
   return (
     <div className="absolute right-0 mt-2 w-48 dark:bg-dark bg-light rounded-md overflow-hidden shadow-xl z-10 top-full">

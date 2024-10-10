@@ -10,7 +10,7 @@ export default function AuthModal({ closeModal }) {
   const initialFormData = { email: '', password: '' };
   const [form, setForm] = useState(initialFormData);
   const [isSignIn, setIsSignIn] = useState(true);
-  const {handleLogin, handleRegister, user} = useContext(AuthContext);
+  const { handleLogin, handleRegister, user } = useContext(AuthContext);
 
   const handleFormData = e => {
     setForm({ ...form, [e.target.name]: e.target.value });
@@ -21,10 +21,11 @@ export default function AuthModal({ closeModal }) {
   const handleOnSubmit = e => {
     e.preventDefault();
     if (isSignIn) {
-      handleLogin({...form});
+      handleLogin({ ...form });
     } else {
-      handleRegister({...form});
+      handleRegister({ ...form });
     }
+    setForm(initialFormData);
   };
 
   if (user) return;

@@ -5,20 +5,20 @@ import { loginUser, registerUser } from '../services/authService';
 
 export const AuthContext = createContext();
 
-export const AuthProvider = ({children}) => {
+export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(null);
   const [user, setUser] = useState(null);
 
-  const saveToken = (jwtToken) => {
+  const saveToken = jwtToken => {
     setToken(jwtToken);
-    const {email, sub} = jwtDecode(jwtToken);
-    setUser({email, userId: sub});
+    const { email, sub } = jwtDecode(jwtToken);
+    setUser({ email, userId: sub });
     setLocalToken(jwtToken);
-  }
+  };
 
-  useEffect(()=> {
+  useEffect(() => {
     const storedToken = getLocalToken();
-    if(storedToken) {
+    if (storedToken) {
       saveToken(storedToken);
     }
   }, []);
@@ -27,29 +27,38 @@ export const AuthProvider = ({children}) => {
     setToken(null);
     setUser(null);
     logoutUser();
-  }
+  };
 
-  const handleRegister = async (userData) => {
+  const handleRegister = async userData => {
     try {
       const jwtToken = await registerUser(userData);
-      if(jwtToken) saveToken(jwtToken);
+      if (jwtToken) saveToken(jwtToken);
     } catch (error) {
       console.error('회원가입 중 오류 발생', error);
     }
-  }
+  };
 
-  const handleLogin = async (userData) => {
+  const handleLogin = async userData => {
     try {
       const jwtToken = await loginUser(userData);
-      if(jwtToken) saveToken(jwtToken);
+      if (jwtToken) saveToken(jwtToken);
     } catch (error) {
       console.error('로그인 중 오류 발생', error);
     }
-  }
+  };
 
   return (
-    <AuthContext.Provider value={{token, user, saveToken, handleLogout, handleLogin, handleRegister}}>
+    <AuthContext.Provider
+      value={{
+        token,
+        user,
+        saveToken,
+        handleLogout,
+        handleLogin,
+        handleRegister,
+      }}
+    >
       {children}
     </AuthContext.Provider>
-  )
-}
+  );
+};

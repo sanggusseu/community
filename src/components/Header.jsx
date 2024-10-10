@@ -12,7 +12,7 @@ export default function Header() {
   const [isDropdownOpen, setIsDropdownOpen] = useState(false);
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
-  const {user} = useContext(AuthContext);
+  const { user } = useContext(AuthContext);
 
   const toggleDropdown = () => {
     setIsDropdownOpen(!isDropdownOpen);
@@ -64,20 +64,20 @@ export default function Header() {
               </li>
             </ul>
           </nav>
-          {
-            !user && (<Button handleOnClick={() => toggleAuthModal(true)}>
-            로그인/회원가입
-          </Button>)
-          }
+          {!user && (
+            <Button handleOnClick={() => toggleAuthModal(true)}>
+              로그인/회원가입
+            </Button>
+          )}
           {isAuthModalOpen && (
             <AuthModal closeModal={() => toggleAuthModal(false)} />
           )}
-          {
-            user && (<div className="flex items-center">
+          {user && (
+            <div className="flex items-center">
               <AvatarButton handleOnClick={toggleDropdown} />
               {isDropdownOpen && <Dropdown />}
-            </div>)
-          }
+            </div>
+          )}
         </div>
       </div>
       <Sidebar isOpen={isSidebarOpen} closeSidebar={closeSidebar} />
