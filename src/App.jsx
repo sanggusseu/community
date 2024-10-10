@@ -5,7 +5,7 @@ export default function App() {
   return (
     <>
       <Header />
-      <main>
+      <main className="container mx-auto py-4">
         <Outlet />
       </main>
     </>
