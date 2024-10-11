@@ -6,7 +6,7 @@ export default function App() {
     <div className="min-h-screen dark:bg-gray-800 bg-gray-100">
       <Header />
       <main>
-        <div className="container mx-auto py-4">
+        <div className="container mx-auto py-4 px-4">
           <Outlet />
         </div>
       </main>
