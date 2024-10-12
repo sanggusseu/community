@@ -23,10 +23,6 @@ export const getLocalToken = () => {
   return localStorage.getItem(TOKEN_STORAGE_KEY);
 };
 
-export const isLoggedIn = () => {
-  return !!getToken();
-};
-
 export const logoutUser = () => {
   localStorage.removeItem(TOKEN_STORAGE_KEY);
 };
