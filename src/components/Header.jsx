@@ -74,7 +74,9 @@ export default function Header() {
           )}
           {user && (
             <div className="flex items-center">
-              <AvatarButton handleOnClick={toggleDropdown} />
+              <button type="button" onClick={toggleDropdown}>
+                {user.email}
+              </button>
               {isDropdownOpen && <Dropdown />}
             </div>
           )}
