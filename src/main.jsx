@@ -10,6 +10,7 @@ import { AuthContext, AuthProvider } from './context/AuthContext.jsx';
 import CreateWishPage from './pages/CreateWishPage.jsx';
 import { WishProvider } from './context/WishContext.jsx';
 import EditWishPage from './pages/EditWishPage.jsx';
+import DetailPage from './pages/DetailPage.jsx';
 
 const getMainElement = isLoggedIn => {
   return isLoggedIn ? <MyWish /> : <OtherWishes />;
@@ -47,6 +48,10 @@ const AppRoutes = () => {
         {
           path: 'edit/:id',
           element: <EditWishPage />,
+        },
+        {
+          path: 'posts/:id',
+          element: <DetailPage />,
         },
       ],
     },
