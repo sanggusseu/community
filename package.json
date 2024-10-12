@@ -11,7 +11,7 @@
     "format": "prettier --write --cache .",
     "lint:format": "prettier --write . && eslint . --ext js,jsx --report-unused-disable-directives --max-warnings 0 --fix",
     "preview": "vite preview",
-    "db": "json-server --watch data/db.json -m ./node_modules/json-server-auth -p 8000"
+    "db": "json-server --watch data/db.json -m ./node_modules/json-server-auth -r routes.json -p 8000"
   },
   "dependencies": {
     "axios": "^1.7.7",
