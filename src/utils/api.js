@@ -1,13 +1,7 @@
 import axios from 'axios';
 import { TOKEN_STORAGE_KEY } from '../constants/storage';
 import { BASE_API_URL } from '../constants/api';
-
-export const apiClient = axios.create({
-  baseURL: BASE_API_URL,
-  headers: {
-    'Content-Type': 'application/json',
-  },
-});
+import { jwtDecode } from 'jwt-decode';
 
 export const handleApiError = (error, errorMap) => {
   const errorMessage =
@@ -26,3 +20,26 @@ export const getLocalToken = () => {
 export const logoutUser = () => {
   localStorage.removeItem(TOKEN_STORAGE_KEY);
 };
+
+export const apiClient = axios.create({
+  baseURL: BASE_API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+export const authApiClient = axios.create({
+  baseURL: BASE_API_URL,
+  headers: {
+    'Content-Type': 'application/json',
+  },
+});
+
+authApiClient.interceptors.request.use(config => {
+  const token = getLocalToken();
+
+  if (token) {
+    config.headers.Authorization = `Bearer ${token}`;
+  }
+  return config;
+});
