@@ -47,7 +47,9 @@ const AppRoutes = () => {
 createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
-      <AppRoutes />
+      <WishProvider>
+        <AppRoutes />
+      </WishProvider>
     </AuthProvider>
   </StrictMode>,
 );
