@@ -6,7 +6,7 @@ export default function Form({
   submitBtn,
   initialValue = {},
 }) {
-  const [formData, setFormData] = useState(initialValue);
+  const [formData, setFormData] = useState({ ...initialValue });
   const handleFormData = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
