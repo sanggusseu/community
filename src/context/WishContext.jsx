@@ -2,6 +2,7 @@ import { createContext, useCallback, useState } from 'react';
 import {
   createPost,
   deletePost,
+  getFilteredPosts,
   getPostById,
   getPosts,
   updatePost,
@@ -21,6 +22,15 @@ export const WishProvider = ({ children }) => {
       console.error(err);
     }
   }, []);
+
+  const fetchFilteredPosts = useCallback(async (key, value) => {
+    try {
+      const fetchedPosts = await getFilteredPosts(key, value);
+      setPosts(fetchedPosts);
+    } catch (err) {
+      console.error(err);
+    }
+  });
 
   const handleCreatePost = async data => {
     try {
@@ -58,6 +68,7 @@ export const WishProvider = ({ children }) => {
         post,
         handleCreatePost,
         fetchPosts,
+        fetchFilteredPosts,
         handleGetPostById,
         handleDeletePost,
         handleUpdatePost,

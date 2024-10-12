@@ -36,6 +36,15 @@ export const getPostById = async (id, client = apiClient) => {
   }
 };
 
+export const getFilteredPosts = async (key, value, client = apiClient) => {
+  try {
+    const response = await client.get(`/posts?${key}_like=${value}`);
+    return response.data;
+  } catch (err) {
+    handleError('소원 조회에 실패했습니다.', err);
+  }
+};
+
 export const updatePost = async (id, payload, client = authApiClient) => {
   try {
     const response = await client.patch(`/posts/${id}`, {
