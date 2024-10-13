@@ -18,10 +18,11 @@ export const createPost = async (data, client = authApiClient) => {
   }
 };
 
-export const getPosts = async (client = apiClient) => {
+export const getPosts = async (page = 1, limit = 8, client = apiClient) => {
   try {
-    const response = await client.get('/posts');
-    return response.data;
+    const response = await client.get(`/posts?_page=${page}&_limit=${limit}`);
+    const totalCount = response.headers['x-total-count'];
+    return { data: response.data, totalCount };
   } catch (err) {
     handleError('소원 목록 조회에 실패했습니다.', err);
   }
@@ -36,10 +37,19 @@ export const getPostById = async (id, client = apiClient) => {
   }
 };
 
-export const getFilteredPosts = async (query, value, client = apiClient) => {
+export const getFilteredPosts = async (
+  query,
+  value,
+  page = 1,
+  limit = 8,
+  client = apiClient,
+) => {
   try {
-    const response = await client.get(`/posts?${query}_like=${value}`);
-    return response.data;
+    const response = await client.get(
+      `/posts?_page=${page}&_limit=${limit}&${query}_like=${value}`,
+    );
+    const totalCount = response.headers['x-total-count'];
+    return { data: response.data, totalCount };
   } catch (err) {
     handleError('소원 조회에 실패했습니다.', err);
   }

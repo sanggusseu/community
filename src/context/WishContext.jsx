@@ -13,24 +13,34 @@ export const WishContext = createContext();
 export const WishProvider = ({ children }) => {
   const [posts, setPosts] = useState([]);
   const [post, setPost] = useState(null);
+  const [pageCount, setPageCount] = useState();
 
-  const fetchPosts = useCallback(async () => {
+  const fetchPosts = useCallback(async (page = 1, limit = 8) => {
     try {
-      const fetchedPosts = await getPosts();
+      const { data: fetchedPosts, totalCount } = await getPosts(page, limit);
       setPosts(fetchedPosts);
+      setPageCount(Math.ceil(totalCount / limit));
     } catch (err) {
       console.error(err);
     }
   }, []);
 
-  const fetchFilteredPosts = useCallback(async (query, value) => {
-    try {
-      const fetchedPosts = await getFilteredPosts(query, value);
-      setPosts(fetchedPosts);
-    } catch (err) {
-      console.error(err);
-    }
-  });
+  const fetchFilteredPosts = useCallback(
+    async (query, value, page = 1, limit = 8) => {
+      try {
+        const { data: fetchedPosts, totalCount } = await getFilteredPosts(
+          query,
+          value,
+          page,
+          limit,
+        );
+        setPosts(fetchedPosts);
+        setPageCount(Math.ceil(totalCount / limit));
+      } catch (err) {
+        console.error(err);
+      }
+    },
+  );
 
   const handleCreatePost = async data => {
     try {
@@ -66,6 +76,7 @@ export const WishProvider = ({ children }) => {
       value={{
         posts,
         post,
+        pageCount,
         handleCreatePost,
         fetchPosts,
         fetchFilteredPosts,
