@@ -23,9 +23,9 @@ export const WishProvider = ({ children }) => {
     }
   }, []);
 
-  const fetchFilteredPosts = useCallback(async (key, value) => {
+  const fetchFilteredPosts = useCallback(async (query, value) => {
     try {
-      const fetchedPosts = await getFilteredPosts(key, value);
+      const fetchedPosts = await getFilteredPosts(query, value);
       setPosts(fetchedPosts);
     } catch (err) {
       console.error(err);
