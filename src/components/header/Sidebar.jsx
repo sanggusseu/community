@@ -2,10 +2,10 @@ import Separator from '../Separator';
 import Dimmed from '../Dimmed';
 import { Link } from 'react-router-dom';
 
-export default function Sidebar({ isOpen, closeSidebar }) {
+export default function Sidebar({ isOpen, toggleSidebar }) {
   const handleOnClick = e => {
     if (e.target === e.currentTarget) return;
-    closeSidebar();
+    toggleSidebar();
   };
   return (
     <>
@@ -66,7 +66,7 @@ export default function Sidebar({ isOpen, closeSidebar }) {
           </div> */}
         </div>
       </aside>
-      <Dimmed isActive={isOpen} handleOnClick={closeSidebar} />
+      <Dimmed isActive={isOpen} handleOnClick={toggleSidebar} />
     </>
   );
 }

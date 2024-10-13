@@ -22,10 +22,6 @@ export default function Header() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const closeSidebar = () => {
-    setIsSidebarOpen(false);
-  };
-
   const toggleAuthModal = val => {
     setIsAuthModalOpen(val);
   };
@@ -82,7 +78,7 @@ export default function Header() {
           )}
         </div>
       </div>
-      <Sidebar isOpen={isSidebarOpen} closeSidebar={closeSidebar} />
+      <Sidebar isOpen={isSidebarOpen} toggleSidebar={toggleSidebar} />
     </header>
   );
 }
