@@ -4,7 +4,7 @@ import WishContainer from '../components/WishContainer';
 import SearchInput from '../components/SearchInput';
 import Pagination from '../components/pagination/Pagination';
 
-export default function OtherWishes() {
+export default function OtherWishesPage() {
   const { posts, fetchPosts } = useContext(WishContext);
   const { fetchFilteredPosts } = useContext(WishContext);
   const [queryData, setQueryData] = useState({ query: 'title', value: '' });

@@ -5,7 +5,7 @@ import WishContainer from '../components/WishContainer';
 import { useNavigate } from 'react-router-dom';
 import Pagination from '../components/pagination/Pagination';
 
-export default function MyWish() {
+export default function MyWishPage() {
   const { posts, fetchFilteredPosts } = useContext(WishContext);
   const { user } = useContext(AuthContext);
   const [currentPage, setCurrentPage] = useState(1);

@@ -3,8 +3,8 @@ import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import MyWish from './pages/MyWish.jsx';
-import OtherWishes from './pages/OtherWishes.jsx';
+import MyWishPage from './pages/MyWishPage.jsx';
+import OtherWishesPage from './pages/OtherWishesPage.jsx';
 import MyPage from './pages/MyPage.jsx';
 import { AuthContext, AuthProvider } from './context/AuthContext.jsx';
 import CreateWishPage from './pages/CreateWishPage.jsx';
@@ -13,7 +13,7 @@ import EditWishPage from './pages/EditWishPage.jsx';
 import DetailPage from './pages/DetailPage.jsx';
 
 const getMainElement = isLoggedIn => {
-  return isLoggedIn ? <MyWish /> : <OtherWishes />;
+  return isLoggedIn ? <MyWishPage /> : <OtherWishesPage />;
 };
 
 const AppRoutes = () => {
@@ -31,11 +31,11 @@ const AppRoutes = () => {
         },
         {
           path: 'other',
-          element: <OtherWishes />,
+          element: <OtherWishesPage />,
         },
         {
           path: 'my',
-          element: <MyWish />,
+          element: <MyWishPage />,
         },
         {
           path: 'mypage',
