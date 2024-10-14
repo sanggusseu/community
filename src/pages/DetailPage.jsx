@@ -18,7 +18,7 @@ export default function DetailPage() {
     };
 
     fetchGetPostById();
-  }, [post]);
+  }, []);
 
   const handleDelete = async () => {
     if (post?.userId === user?.userId) {
