@@ -3,6 +3,7 @@ import Dimmed from '../Dimmed';
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../../context/AuthContext';
+import AuthButtons from './AuthButtons';
 
 export default function Sidebar({ isOpen, toggleSidebar, toggleAuthModal }) {
   const { user, handleLogout } = useContext(AuthContext);
@@ -39,7 +40,7 @@ export default function Sidebar({ isOpen, toggleSidebar, toggleAuthModal }) {
               <li className="w-full">
                 <Link
                   className="flex flex-grow py-2 px-3 text-sm hover:bg-dark hover:text-light dark:hover:bg-light dark:hover:text-dark transition-all duration-200"
-                  to="/my"
+                  to="/"
                 >
                   나의 소원
                 </Link>
@@ -47,36 +48,11 @@ export default function Sidebar({ isOpen, toggleSidebar, toggleAuthModal }) {
             </ul>
           </nav>
           <Separator />
-          {!user && (
-            <button
-              type="button"
-              className="flex items-center w-full p-2 text-sm dark:text-light dark:hover:text-dark dark:hover:bg-light text-dark hover:bg-dark transition duration-300 ease-in-out"
-              onClick={toggleAuthModal}
-            >
-              로그인/회원가입
-            </button>
-          )}
-          {user && (
-            <>
-              <div>
-                <Link
-                  to="/mypage"
-                  className="flex items-center p-2 text-sm dark:text-light dark:hover:text-dark dark:hover:bg-light text-dark hover:bg-dark transition duration-300 ease-in-out"
-                  aria-label="마이페이지로 이동"
-                >
-                  마이페이지
-                </Link>
-                <button
-                  type="button"
-                  onClick={handleLogout}
-                  className="flex flex-grow items-center w-full p-2 text-sm dark:text-light dark:hover:text-dark dark:hover:bg-light text-dark hover:bg-dark transition duration-300 ease-in-out"
-                  aria-label="로그아웃"
-                >
-                  로그아웃
-                </button>
-              </div>
-            </>
-          )}
+          <AuthButtons
+            user={user}
+            handleLogout={handleLogout}
+            toggleAuthModal={toggleAuthModal}
+          />
         </div>
       </aside>
       <Dimmed isActive={isOpen} handleOnClick={toggleSidebar} />
