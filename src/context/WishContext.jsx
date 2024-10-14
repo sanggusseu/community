@@ -63,7 +63,6 @@ export const WishProvider = ({ children }) => {
 
   const handleDeletePost = async id => {
     await deletePost(id);
-    await fetchPosts();
   };
 
   const handleUpdatePost = async (id, data) => {
