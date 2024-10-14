@@ -2,7 +2,7 @@ import { useContext, useState } from 'react';
 import { FaBars } from 'react-icons/fa';
 import Sidebar from './header/Sidebar';
 import Dropdown from './header/Dropdown';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from './Button';
 import AuthModal from './header/AuthModal';
 import { AuthContext } from '../context/AuthContext';
@@ -12,6 +12,7 @@ export default function Header() {
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const { user } = useContext(AuthContext);
+  const navigate = useNavigate();
 
   const toggleDropdown = val => {
     const state = val ? val : !isDropdownOpen;
@@ -24,6 +25,11 @@ export default function Header() {
 
   const toggleAuthModal = () => {
     setIsAuthModalOpen(!isAuthModalOpen);
+  };
+
+  const handleLink = to => {
+    if (user) return navigate(to);
+    alert('로그인 후 이용 가능합니다!');
   };
 
   return (
@@ -52,12 +58,13 @@ export default function Header() {
                   </Link>
                 </li>
                 <li>
-                  <Link
+                  <button
+                    type="button"
+                    onClick={() => handleLink('/')}
                     className="py-2 px-3 hover:bg-dark hover:text-light dark:hover:bg-light dark:hover:text-dark transition-all duration-200 rounded-md"
-                    to="/my"
                   >
                     나의 소원
-                  </Link>
+                  </button>
                 </li>
               </ul>
             </nav>
