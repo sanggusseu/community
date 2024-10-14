@@ -36,7 +36,7 @@ export default function AuthModal({ closeModal }) {
   return (
     <>
       <div className="fixed top-[50%] left-[50%] translate-x-[-50%] translate-y-[-50%] bg-dark bg-opacity-50 flex items-center justify-center z-50 rounded-lg">
-        <div className="dark:bg-dark dark:text-light bg-light text-dark p-8 rounded-lg shadow-xl max-w-md w-full">
+        <div className="dark:bg-dark dark:text-light bg-light text-dark p-8 rounded-lg shadow-xl min-w-max w-full">
           <div className="flex justify-between items-center mb-6">
             <h2 className="text-2xl font-bold">{isSignIn ? SIGNIN : SIGNUP}</h2>
             <button
