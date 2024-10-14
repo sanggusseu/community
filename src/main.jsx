@@ -16,6 +16,11 @@ import { WishProvider } from './context/WishContext.jsx';
 import EditWishPage from './pages/EditWishPage.jsx';
 import DetailPage from './pages/DetailPage.jsx';
 
+const ProtectedRoute = ({ children }) => {
+  const { user } = useContext(AuthContext);
+  return user ? children : <Navigate to="/" />;
+};
+
 const AppRoutes = () => {
   const { user } = useContext(AuthContext);
   const isLoggedIn = !!user;
@@ -35,15 +40,27 @@ const AppRoutes = () => {
         },
         {
           path: 'mypage',
-          element: isLoggedIn ? <MyPage /> : <Navigate to="/" />,
+          element: (
+            <ProtectedRoute>
+              <MyPage />
+            </ProtectedRoute>
+          ),
         },
         {
           path: 'create',
-          element: isLoggedIn ? <CreateWishPage /> : <Navigate to="/" />,
+          element: (
+            <ProtectedRoute>
+              <CreateWishPage />
+            </ProtectedRoute>
+          ),
         },
         {
           path: 'edit/:id',
-          element: isLoggedIn ? <EditWishPage /> : <Navigate to="/" />,
+          element: (
+            <ProtectedRoute>
+              <EditWishPage />
+            </ProtectedRoute>
+          ),
         },
         {
           path: 'posts/:id',
