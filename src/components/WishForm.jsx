@@ -2,14 +2,14 @@ import InputField from './form/InputField';
 import TextArea from './form/TextArea';
 import Form from './form/Form';
 
-const WishForm = ({ handleOnSubmit, initialValue = {}, submitBtn }) => {
+const WishForm = ({ handleSubmit, initialValue = {}, submitBtn }) => {
   return (
     <div className=" dark:text-white text-gray-900">
       <div className="flex items-center my-8">
         <h1 className="text-3xl font-bold">소원 작성하기</h1>
       </div>
       <Form
-        OnSubmit={handleOnSubmit}
+        handleSubmit={handleSubmit}
         initialValue={initialValue}
         submitBtn={submitBtn}
       >
