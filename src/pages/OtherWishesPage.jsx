@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from 'react';
+import { useContext, useEffect, useRef, useState } from 'react';
 import { WishContext } from '../context/WishContext';
 import WishContainer from '../components/WishContainer';
 import SearchInput from '../components/SearchInput';
@@ -10,8 +10,20 @@ export default function OtherWishesPage() {
   const [queryData, setQueryData] = useState({ query: 'title', value: '' });
   const [currentPage, setCurrentPage] = useState(1);
 
+  const debounceRef = useRef(null);
+
   const handleGetPosts = async page => {
     await fetchPosts(page);
+  };
+
+  const debounceFetch = (query, value) => {
+    if (debounceRef.current) {
+      clearTimeout(debounceRef.current);
+    }
+
+    debounceRef.current = setTimeout(() => {
+      fetchFilteredPosts(query, value);
+    }, 1000);
   };
 
   useEffect(() => {
@@ -22,7 +34,7 @@ export default function OtherWishesPage() {
     const { name, value } = e.target;
     setQueryData(prevData => {
       const newQueryData = { ...prevData, [name]: value };
-      fetchFilteredPosts(newQueryData.query, newQueryData.value);
+      debounceFetch(newQueryData.query, newQueryData.value);
       return newQueryData;
     });
   };
