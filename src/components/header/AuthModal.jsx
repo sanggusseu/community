@@ -5,16 +5,15 @@ import { AuthContext } from '../../context/AuthContext';
 import Form from '../form/Form';
 import InputField from '../form/InputField';
 
-export default function AuthModal({ closeModal }) {
-  const SIGNIN = '로그인';
-  const SIGNUP = '회원가입';
+const SIGNIN = '로그인';
+const SIGNUP = '회원가입';
 
+export default function AuthModal({ closeModal }) {
   const [isSignIn, setIsSignIn] = useState(true);
   const { handleLogin, handleRegister, user } = useContext(AuthContext);
 
-  const handleType = () => {
-    setIsSignIn(!isSignIn);
-  };
+  const toggleAuthType = () => setIsSignIn(prev => !prev);
+
   const handleSubmit = data => {
     if (isSignIn) {
       handleLogin(data);
@@ -25,7 +24,7 @@ export default function AuthModal({ closeModal }) {
 
   if (user) {
     closeModal();
-    return;
+    return null;
   }
 
   return (
@@ -57,7 +56,7 @@ export default function AuthModal({ closeModal }) {
           <button
             type="button"
             className="text-opacity-85 text-dark dark:text-light mt-2"
-            onClick={handleType}
+            onClick={toggleAuthType}
           >
             {isSignIn ? SIGNUP : SIGNIN}
           </button>
