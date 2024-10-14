@@ -2,7 +2,11 @@ import { StrictMode, useContext } from 'react';
 import { createRoot } from 'react-dom/client';
 import App from './App.jsx';
 import './index.css';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import {
+  createBrowserRouter,
+  Navigate,
+  RouterProvider,
+} from 'react-router-dom';
 import MyWishPage from './pages/MyWishPage.jsx';
 import OtherWishesPage from './pages/OtherWishesPage.jsx';
 import MyPage from './pages/MyPage.jsx';
@@ -11,10 +15,6 @@ import CreateWishPage from './pages/CreateWishPage.jsx';
 import { WishProvider } from './context/WishContext.jsx';
 import EditWishPage from './pages/EditWishPage.jsx';
 import DetailPage from './pages/DetailPage.jsx';
-
-const getMainElement = isLoggedIn => {
-  return isLoggedIn ? <MyWishPage /> : <OtherWishesPage />;
-};
 
 const AppRoutes = () => {
   const { user } = useContext(AuthContext);
@@ -27,27 +27,23 @@ const AppRoutes = () => {
       children: [
         {
           path: '',
-          element: getMainElement(isLoggedIn),
+          element: isLoggedIn ? <MyWishPage /> : <OtherWishesPage />,
         },
         {
           path: 'other',
           element: <OtherWishesPage />,
         },
         {
-          path: 'my',
-          element: <MyWishPage />,
-        },
-        {
           path: 'mypage',
-          element: <MyPage />,
+          element: isLoggedIn ? <MyPage /> : <Navigate to="/" />,
         },
         {
           path: 'create',
-          element: <CreateWishPage />,
+          element: isLoggedIn ? <CreateWishPage /> : <Navigate to="/" />,
         },
         {
           path: 'edit/:id',
-          element: <EditWishPage />,
+          element: isLoggedIn ? <EditWishPage /> : <Navigate to="/" />,
         },
         {
           path: 'posts/:id',
