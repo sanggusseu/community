@@ -6,7 +6,7 @@ import { WishContext } from '../context/WishContext';
 export default function CreateWishPage() {
   const { user } = useContext(AuthContext);
   const { handleCreatePost } = useContext(WishContext);
-  const handleOnSubmit = data => {
+  const handleSubmit = data => {
     const today = new Date().toISOString().split('T')[0];
     const { email, userId } = { ...user };
     handleCreatePost({
@@ -19,7 +19,7 @@ export default function CreateWishPage() {
   };
   return (
     <section>
-      <WishForm handleOnSubmit={handleOnSubmit} submitBtn="저장하기" />
+      <WishForm handleSubmit={handleSubmit} submitBtn="저장하기" />
     </section>
   );
 }

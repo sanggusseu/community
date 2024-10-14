@@ -19,7 +19,7 @@ export default function EditWishPage() {
     fetchGetPostById();
   }, []);
 
-  const handleOnSubmit = data => {
+  const handleSubmit = data => {
     handleUpdatePost(id, {
       ...data,
       price: Number(data.price).toLocaleString(),
@@ -32,7 +32,7 @@ export default function EditWishPage() {
   return (
     <section>
       <WishForm
-        handleOnSubmit={handleOnSubmit}
+        handleSubmit={handleSubmit}
         initialValue={initialValue}
         submitBtn="수정하기"
       />

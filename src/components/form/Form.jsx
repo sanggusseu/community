@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 export default function Form({
   children,
-  OnSubmit,
+  handleSubmit,
   submitBtn,
   initialValue = {},
 }) {
@@ -10,13 +10,13 @@ export default function Form({
   const handleFormData = e => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
-  const handleOnSubmit = e => {
+  const handleFormSubmit = e => {
     e.preventDefault();
-    OnSubmit({ ...formData });
+    handleSubmit({ ...formData });
     setFormData({});
   };
   return (
-    <form onSubmit={handleOnSubmit} className="space-y-6">
+    <form onSubmit={handleFormSubmit} className="space-y-6">
       {React.Children.map(children, child => {
         return React.cloneElement(child, {
           onChange: handleFormData,
