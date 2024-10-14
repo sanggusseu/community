@@ -21,8 +21,9 @@ export default function Header() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const toggleAuthModal = () => {
-    setIsAuthModalOpen(!isAuthModalOpen);
+  const toggleAuthModal = val => {
+    const state = val ? val : !isAuthModalOpen;
+    setIsAuthModalOpen(state);
   };
 
   return (
@@ -65,10 +66,14 @@ export default function Header() {
             )}
             {user && (
               <div className="flex items-center">
-                <button type="button" onClick={toggleDropdown}>
+                <button
+                  type="button"
+                  onClick={toggleDropdown}
+                  className="dropdown"
+                >
                   {user.email}
                 </button>
-                {isDropdownOpen && <Dropdown />}
+                {isDropdownOpen && <Dropdown toggleDropdown={toggleDropdown} />}
               </div>
             )}
           </div>

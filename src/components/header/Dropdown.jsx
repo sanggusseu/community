@@ -1,9 +1,23 @@
-import { useContext } from 'react';
+import { useContext, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { AuthContext } from '../../context/AuthContext';
 
-export default function Dropdown() {
+export default function Dropdown({ toggleDropdown }) {
   const { handleLogout } = useContext(AuthContext);
+  useEffect(() => {
+    const handleDropdown = e => {
+      if (e.target.classList.contains('dropdown')) return;
+      toggleDropdown(false);
+    };
+
+    setTimeout(() => {
+      window.addEventListener('click', handleDropdown);
+    }, 100);
+
+    return () => {
+      window.removeEventListener('click', handleDropdown);
+    };
+  }, []);
 
   return (
     <div className="absolute right-0 mt-2 w-48 dark:bg-dark bg-light rounded-md overflow-hidden shadow-xl z-10 top-full">
