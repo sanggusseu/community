@@ -22,8 +22,8 @@ export default function Header() {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const toggleAuthModal = val => {
-    setIsAuthModalOpen(val);
+  const toggleAuthModal = () => {
+    setIsAuthModalOpen(!isAuthModalOpen);
   };
 
   return (
