@@ -1,31 +1,26 @@
 import { useContext, useState } from 'react';
-import { FaTimes, FaEnvelope, FaLock } from 'react-icons/fa';
+import { FaTimes } from 'react-icons/fa';
 import Dimmed from '../Dimmed';
-import Button from '../Button';
 import { AuthContext } from '../../context/AuthContext';
+import Form from '../form/Form';
+import InputField from '../form/InputField';
 
 export default function AuthModal({ closeModal }) {
   const SIGNIN = '로그인';
   const SIGNUP = '회원가입';
-  const initialFormData = { email: '', password: '' };
-  const [form, setForm] = useState(initialFormData);
+
   const [isSignIn, setIsSignIn] = useState(true);
   const { handleLogin, handleRegister, user } = useContext(AuthContext);
 
-  const handleFormData = e => {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  };
   const handleType = () => {
     setIsSignIn(!isSignIn);
   };
-  const handleOnSubmit = e => {
-    e.preventDefault();
+  const handleSubmit = data => {
     if (isSignIn) {
-      handleLogin({ ...form });
+      handleLogin(data);
     } else {
-      handleRegister({ ...form });
+      handleRegister(data);
     }
-    setForm(initialFormData);
   };
 
   if (user) {
@@ -47,56 +42,25 @@ export default function AuthModal({ closeModal }) {
               <FaTimes />
             </button>
           </div>
-          <form onSubmit={handleOnSubmit}>
-            <div className="mb-4">
-              <label htmlFor="email" className="block mb-2">
-                이메일
-              </label>
-              <div className="relative">
-                <FaEnvelope className="absolute left-3 top-1/2 transform -translate-y-1/2 text-light dark:text-dark" />
-                <input
-                  type="email"
-                  id="email"
-                  name="email"
-                  autoComplete="off"
-                  value={form.email}
-                  onChange={handleFormData}
-                  className="w-full pl-10 pr-3 py-2 rounded-lg dark:bg-light dark:text-dark bg-dark text-light focus:outline-none focus:ring-2 focus:ring-light-500"
-                  placeholder="example@email.com"
-                  required
-                />
-              </div>
-            </div>
-            <div className="mb-6">
-              <label htmlFor="password" className="block mb-2">
-                비밀번호
-              </label>
-              <div className="relative">
-                <FaLock className="absolute left-3 top-1/2 transform -translate-y-1/2 text-light dark:text-dark" />
-                <input
-                  type="password"
-                  id="password"
-                  name="password"
-                  value={form.password}
-                  onChange={handleFormData}
-                  minLength="5"
-                  className="w-full pl-10 pr-3 py-2 rounded-lg dark:bg-light dark:text-dark bg-dark text-light focus:outline-none focus:ring-2 focus:ring-light-500"
-                  placeholder="********"
-                  required
-                />
-              </div>
-            </div>
-            <button
-              type="button"
-              className="text-opacity-85 text-dark dark:text-light mb-2"
-              onClick={handleType}
-            >
-              {isSignIn ? SIGNUP : SIGNIN}
-            </button>
-            <Button type="submit" addStyle={'w-full'}>
-              {isSignIn ? SIGNIN : SIGNUP}
-            </Button>
-          </form>
+          <Form
+            handleSubmit={handleSubmit}
+            submitBtn={`${isSignIn ? SIGNIN : SIGNUP}`}
+          >
+            <InputField label="이메일" id="email" name="email" />
+            <InputField
+              label="비밀번호"
+              id="password"
+              name="password"
+              type="password"
+            />
+          </Form>
+          <button
+            type="button"
+            className="text-opacity-85 text-dark dark:text-light mt-2"
+            onClick={handleType}
+          >
+            {isSignIn ? SIGNUP : SIGNIN}
+          </button>
         </div>
       </div>
       <Dimmed isActive="true" handleOnClick={closeModal} />
