@@ -1,12 +1,17 @@
 import Separator from '../Separator';
 import Dimmed from '../Dimmed';
 import { Link } from 'react-router-dom';
+import { useContext } from 'react';
+import { AuthContext } from '../../context/AuthContext';
 
-export default function Sidebar({ isOpen, toggleSidebar }) {
+export default function Sidebar({ isOpen, toggleSidebar, toggleAuthModal }) {
+  const { user, handleLogout } = useContext(AuthContext);
+
   const handleOnClick = e => {
     if (e.target === e.currentTarget) return;
     toggleSidebar();
   };
+
   return (
     <>
       <aside
@@ -17,13 +22,7 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
           <h2 className="text-xl font-bold">
             <Link to="/">소원을 말해봐</Link>
           </h2>
-          {/* <Link to="mypage">
-            <img
-              src="https://images.unsplash.com/photo-1544005313-94ddf0286df2?crop=entropy&cs=tinysrgb&fit=max&fm=jpg&ixid=MnwxfDB8MXxyYW5kb218MHx8cGVyc29ufHx8fHx8MTY4OTg1OTk0Nw&ixlib=rb-4.0.3&q=80&w=1080"
-              alt="사용자 아바타"
-              className="h-20 w-20 rounded-full object-cover"
-            />
-          </Link> */}
+          {user && <span>{user.email}</span>}
         </div>
         <div>
           <Separator />
@@ -47,23 +46,37 @@ export default function Sidebar({ isOpen, toggleSidebar }) {
               </li>
             </ul>
           </nav>
-          {/* <Separator />
-          <div>
-            <Link
-              to="/mypage"
-              className="flex items-center p-2 text-sm dark:text-light dark:hover:text-dark dark:hover:bg-light text-dark hover:bg-dark transition duration-300 ease-in-out"
-              aria-label="마이페이지로 이동"
-            >
-              마이페이지
-            </Link>
+          <Separator />
+          {!user && (
             <button
               type="button"
-              className="flex flex-grow items-center w-full p-2 text-sm dark:text-light dark:hover:text-dark dark:hover:bg-light text-dark hover:bg-dark transition duration-300 ease-in-out"
-              aria-label="로그아웃"
+              className="flex items-center w-full p-2 text-sm dark:text-light dark:hover:text-dark dark:hover:bg-light text-dark hover:bg-dark transition duration-300 ease-in-out"
+              onClick={toggleAuthModal}
             >
-              로그아웃
+              로그인/회원가입
             </button>
-          </div> */}
+          )}
+          {user && (
+            <>
+              <div>
+                <Link
+                  to="/mypage"
+                  className="flex items-center p-2 text-sm dark:text-light dark:hover:text-dark dark:hover:bg-light text-dark hover:bg-dark transition duration-300 ease-in-out"
+                  aria-label="마이페이지로 이동"
+                >
+                  마이페이지
+                </Link>
+                <button
+                  type="button"
+                  onClick={handleLogout}
+                  className="flex flex-grow items-center w-full p-2 text-sm dark:text-light dark:hover:text-dark dark:hover:bg-light text-dark hover:bg-dark transition duration-300 ease-in-out"
+                  aria-label="로그아웃"
+                >
+                  로그아웃
+                </button>
+              </div>
+            </>
+          )}
         </div>
       </aside>
       <Dimmed isActive={isOpen} handleOnClick={toggleSidebar} />
