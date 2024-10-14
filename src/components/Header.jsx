@@ -13,17 +13,17 @@ export default function Header() {
   const [isAuthModalOpen, setIsAuthModalOpen] = useState(false);
   const { user } = useContext(AuthContext);
 
-  const toggleDropdown = () => {
-    setIsDropdownOpen(!isDropdownOpen);
+  const toggleDropdown = val => {
+    const state = val ? val : !isDropdownOpen;
+    setIsDropdownOpen(state);
   };
 
   const toggleSidebar = () => {
     setIsSidebarOpen(!isSidebarOpen);
   };
 
-  const toggleAuthModal = val => {
-    const state = val ? val : !isAuthModalOpen;
-    setIsAuthModalOpen(state);
+  const toggleAuthModal = () => {
+    setIsAuthModalOpen(!isAuthModalOpen);
   };
 
   return (
