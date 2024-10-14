@@ -15,21 +15,15 @@ export default function Header() {
   const navigate = useNavigate();
 
   const toggleDropdown = val => {
-    const state = val ? val : !isDropdownOpen;
+    const state = val ?? !isDropdownOpen;
     setIsDropdownOpen(state);
   };
 
-  const toggleSidebar = () => {
-    setIsSidebarOpen(!isSidebarOpen);
-  };
-
-  const toggleAuthModal = () => {
-    setIsAuthModalOpen(!isAuthModalOpen);
-  };
+  const toggleSidebar = () => setIsSidebarOpen(prev => !prev);
+  const toggleAuthModal = () => setIsAuthModalOpen(prev => !prev);
 
   const handleLink = to => {
-    if (user) return navigate(to);
-    alert('로그인 후 이용 가능합니다!');
+    user ? navigate(to) : alert('로그인 후 이용 가능합니다!');
   };
 
   return (
@@ -42,7 +36,7 @@ export default function Header() {
           <button
             onClick={toggleSidebar}
             className="text-2xl focus:outline-none lg:hidden"
-            aria-label="메뉴 열기"
+            aria-label={isSidebarOpen ? '사이드 바 닫기' : '사이드바 열기'}
           >
             <FaBars />
           </button>
@@ -68,15 +62,15 @@ export default function Header() {
                 </li>
               </ul>
             </nav>
-            {!user && (
+            {!user ? (
               <Button handleOnClick={toggleAuthModal}>로그인/회원가입</Button>
-            )}
-            {user && (
+            ) : (
               <div className="flex items-center">
                 <button
                   type="button"
                   onClick={toggleDropdown}
                   className="dropdown"
+                  aria-label="사용자 메뉴"
                 >
                   {user.email}
                 </button>
