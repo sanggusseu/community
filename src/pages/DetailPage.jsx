@@ -21,12 +21,16 @@ export default function DetailPage() {
   }, [post]);
 
   const handleDelete = async () => {
-    await handleDeletePost(id);
-    navigate(-1);
+    if (post?.userId === user?.userId) {
+      navigate(-1);
+      await handleDeletePost(id);
+    } else {
+      alert('작성자만 삭제할 수 있습니다!');
+    }
   };
 
   const handleEdit = () => {
-    if (post.userId === user.userId) {
+    if (post?.userId === user?.userId) {
       navigate(`/edit/${id}`);
     } else {
       alert('작성자만 수정할 수 있습니다!');
