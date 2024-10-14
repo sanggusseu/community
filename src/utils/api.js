@@ -1,7 +1,6 @@
 import axios from 'axios';
 import { TOKEN_STORAGE_KEY } from '../constants/storage';
 import { BASE_API_URL } from '../constants/api';
-import { jwtDecode } from 'jwt-decode';
 
 export const handleApiError = (error, errorMap) => {
   const errorMessage =
