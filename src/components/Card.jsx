@@ -12,6 +12,12 @@ export default function Card({
   price,
   id,
 }) {
+  const handleLink = e => {
+    e.preventDefault();
+    e.stopPropagation();
+    window.open(link);
+  };
+
   return (
     <Link
       to={`/posts/${id}`}
@@ -25,14 +31,13 @@ export default function Card({
       </div>
       <div className="flex items-center text-gray-600 mb-2">
         <TbBuildingStore className="mr-2" />
-        <a
-          href={link}
-          target="_blank"
+        <button
+          type="button"
           className="hover:underline"
-          onClick={e => e.stopPropagation()}
+          onClick={e => handleLink(e)}
         >
           구매처
-        </a>
+        </button>
       </div>
       <div className="flex items-center text-gray-600 mb-2">
         <TbUser className="mr-2" />
