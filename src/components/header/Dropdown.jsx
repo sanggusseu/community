@@ -4,18 +4,18 @@ import { AuthContext } from '../../context/AuthContext';
 
 export default function Dropdown({ toggleDropdown }) {
   const { handleLogout } = useContext(AuthContext);
+
   useEffect(() => {
-    const handleDropdown = e => {
-      if (e.target.classList.contains('dropdown')) return;
-      toggleDropdown(false);
+    const handleOutsideClick = e => {
+      if (!e.target.closest('.dropdown')) {
+        toggleDropdown(false);
+      }
     };
 
-    setTimeout(() => {
-      window.addEventListener('click', handleDropdown);
-    }, 100);
+    window.addEventListener('click', handleOutsideClick);
 
     return () => {
-      window.removeEventListener('click', handleDropdown);
+      window.removeEventListener('click', handleOutsideClick);
     };
   }, []);
 
