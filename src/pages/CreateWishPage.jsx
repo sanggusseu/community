@@ -22,7 +22,7 @@ export default function CreateWishPage() {
   };
   return (
     <section>
-      <WishForm handleSubmit={handleSubmit} submitBtn="저장하기" />
+      <WishForm handleSubmit={handleSubmit} submitBtnText="저장하기" />
     </section>
   );
 }

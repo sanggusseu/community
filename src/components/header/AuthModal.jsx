@@ -45,7 +45,7 @@ export default function AuthModal({ closeModal }) {
           </div>
           <Form
             handleSubmit={handleSubmit}
-            submitBtn={`${isSignIn ? SIGN_IN : SIGN_UP}`}
+            submitBtnText={`${isSignIn ? SIGN_IN : SIGN_UP}`}
           >
             <InputField label="이메일" id="email" name="email" />
             <InputField

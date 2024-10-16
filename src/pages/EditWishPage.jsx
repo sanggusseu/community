@@ -34,7 +34,7 @@ export default function EditWishPage() {
       <WishForm
         handleSubmit={handleSubmit}
         initialValue={initialValue}
-        submitBtn="수정하기"
+        submitBtnText="수정하기"
       />
     </section>
   );

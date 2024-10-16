@@ -3,7 +3,7 @@ import React, { useState } from 'react';
 export default function Form({
   children,
   handleSubmit,
-  submitBtn,
+  submitBtnText,
   initialValue = {},
 }) {
   const [formData, setFormData] = useState({ ...initialValue });
@@ -27,7 +27,7 @@ export default function Form({
         type="submit"
         className="w-full py-2 px-4 rounded dark:bg-blue-600 dark:hover:bg-blue-700 bg-blue-500 hover:bg-blue-600 text-white transition duration-300 ease-in-out"
       >
-        {submitBtn}
+        {submitBtnText}
       </button>
     </form>
   );
