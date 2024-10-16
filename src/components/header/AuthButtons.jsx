@@ -7,7 +7,7 @@ export default function AuthButtons({ user, handleLogout, toggleAuthModal }) {
         <>
           <div>
             <Link
-              to="/mypage"
+              to="/my-page"
               className="flex items-center p-2 text-sm dark:text-light dark:hover:text-dark dark:hover:bg-light text-dark hover:bg-dark transition duration-300 ease-in-out"
               aria-label="마이페이지로 이동"
             >

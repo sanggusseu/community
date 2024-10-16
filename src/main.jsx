@@ -32,7 +32,15 @@ const AppRoutes = () => {
           element: <HomePage />,
         },
         {
-          path: 'mypage',
+          path: 'my-wish',
+          element: (
+            <ProtectedRoute>
+              <MyWishPage />
+            </ProtectedRoute>
+          ),
+        },
+        {
+          path: 'my-page',
           element: (
             <ProtectedRoute>
               <MyPage />

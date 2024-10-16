@@ -32,7 +32,7 @@ export default function Sidebar({ isOpen, toggleSidebar, toggleAuthModal }) {
               <li className="w-full">
                 <Link
                   className="flex flex-grow py-2 px-3 text-sm hover:bg-dark hover:text-light dark:hover:bg-light dark:hover:text-dark transition-all duration-200"
-                  to="/other"
+                  to="/"
                 >
                   둘러보기
                 </Link>
@@ -40,7 +40,7 @@ export default function Sidebar({ isOpen, toggleSidebar, toggleAuthModal }) {
               <li className="w-full">
                 <Link
                   className="flex flex-grow py-2 px-3 text-sm hover:bg-dark hover:text-light dark:hover:bg-light dark:hover:text-dark transition-all duration-200"
-                  to="/"
+                  to="/my-wish"
                 >
                   나의 소원
                 </Link>

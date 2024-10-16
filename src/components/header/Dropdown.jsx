@@ -22,7 +22,7 @@ export default function Dropdown({ toggleDropdown }) {
   return (
     <div className="absolute right-0 mt-2 w-48 dark:bg-dark bg-light rounded-md overflow-hidden shadow-xl z-10 top-full">
       <Link
-        to="/mypage"
+        to="/my-page"
         className="flex items-center px-4 py-2 text-sm dark:text-light dark:hover:text-dark dark:hover:bg-light text-dark hover:bg-dark transition duration-300 ease-in-out"
         aria-label="마이페이지로 이동"
       >

@@ -46,7 +46,7 @@ export default function Header() {
                 <li>
                   <Link
                     className="py-2 px-3 hover:bg-dark hover:text-light dark:hover:bg-light dark:hover:text-dark transition-all duration-200 rounded-md"
-                    to="/other"
+                    to="/"
                   >
                     둘러보기
                   </Link>
@@ -54,7 +54,7 @@ export default function Header() {
                 <li>
                   <button
                     type="button"
-                    onClick={() => handleLink('/')}
+                    onClick={() => handleLink('/my-wish')}
                     className="py-2 px-3 hover:bg-dark hover:text-light dark:hover:bg-light dark:hover:text-dark transition-all duration-200 rounded-md"
                   >
                     나의 소원
