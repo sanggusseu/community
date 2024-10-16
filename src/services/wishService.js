@@ -5,9 +5,9 @@ const handleError = (message, err) => {
   throw new Error(err);
 };
 
-const createEditDate = () => {
+const getTodayDate = (isUpdated = false) => {
   const today = new Date().toISOString().split('T')[0];
-  return `${today} (수정됨)`;
+  return isUpdated ? `${today} (수정됨)` : today;
 };
 
 export const createPost = async (data, client = authApiClient) => {
@@ -59,7 +59,7 @@ export const updatePost = async (id, payload, client = authApiClient) => {
   try {
     const response = await client.patch(`/posts/${id}`, {
       ...payload,
-      createdAt: createEditDate(),
+      createdAt: getTodayDate(true),
     });
     alert('수정 성공');
   } catch (err) {
