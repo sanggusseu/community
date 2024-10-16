@@ -1,8 +1,8 @@
 import { apiClient, authApiClient } from '../utils/api';
 
 const handleError = (message, err) => {
-  console.error(err);
-  alert(message);
+  console.error(message);
+  throw new Error(err);
 };
 
 const createEditDate = () => {
