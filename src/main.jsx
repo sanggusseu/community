@@ -8,7 +8,7 @@ import {
   RouterProvider,
 } from 'react-router-dom';
 import MyWishPage from './pages/MyWishPage.jsx';
-import OtherWishesPage from './pages/OtherWishesPage.jsx';
+import HomePage from './pages/HomePage.jsx';
 import MyPage from './pages/MyPage.jsx';
 import { AuthContext, AuthProvider } from './context/AuthContext.jsx';
 import CreateWishPage from './pages/CreateWishPage.jsx';
@@ -22,9 +22,6 @@ const ProtectedRoute = ({ children }) => {
 };
 
 const AppRoutes = () => {
-  const { user } = useContext(AuthContext);
-  const isLoggedIn = !!user;
-
   const router = createBrowserRouter([
     {
       path: '/',
@@ -32,11 +29,7 @@ const AppRoutes = () => {
       children: [
         {
           path: '',
-          element: isLoggedIn ? <MyWishPage /> : <OtherWishesPage />,
-        },
-        {
-          path: 'other',
-          element: <OtherWishesPage />,
+          element: <HomePage />,
         },
         {
           path: 'mypage',
