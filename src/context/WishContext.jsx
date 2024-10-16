@@ -6,7 +6,7 @@ import {
   getPostById,
   getPosts,
   updatePost,
-} from '../services/WishService';
+} from '../services/wishService';
 
 export const WishContext = createContext();
 

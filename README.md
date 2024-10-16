@@ -17,7 +17,7 @@
 `api.js`
 ![api-client](https://github.com/user-attachments/assets/60c5b93d-9de0-4467-b013-0ff9b435fe02)
 
-`WishService.js`
+`wishService.js`
 ![crud](https://github.com/user-attachments/assets/8fd8c172-c868-47df-b05c-945c7aa57afa)
 
 - **JWT 로그인 및 회원가입**: JWT 기반의 로그인 및 회원가입 기능 구현했습니다, **사용자 인증 후 JWT 토큰을 저장하여 관리**했습니다.
