@@ -1,6 +1,6 @@
 import { jwtDecode } from 'jwt-decode';
 import { createContext, useEffect, useState } from 'react';
-import { getLocalToken, logoutUser, setLocalToken } from '../utils/api';
+import { getLocalToken, removeLocalToken, setLocalToken } from '../utils/token';
 import { loginUser, registerUser } from '../services/authService';
 
 export const AuthContext = createContext();
@@ -26,7 +26,7 @@ export const AuthProvider = ({ children }) => {
   const handleLogout = () => {
     setToken(null);
     setUser(null);
-    logoutUser();
+    removeLocalToken();
   };
 
   const handleRegister = async userData => {
